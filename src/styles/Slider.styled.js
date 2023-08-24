@@ -74,3 +74,57 @@ export const SliderWrapper = styled.div`
     right: -60px;
   }
 `;
+
+export const BestSlider = styled(SliderWrapper)`
+  margin-top: 2.5rem;
+
+  .slick-slide > div {
+    height: 100%;
+  }
+
+  .slide-item {
+    border-radius: 0;
+    height: 100%;
+
+    .slider-text {
+      position: absolute;
+      background: transparent;
+      width: 100%;
+      height: 100%;
+
+      span {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        top: 0;
+        background: ${({ theme }) => theme.colors.point};
+        color: #fff;
+      }
+
+      h3 {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -1px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .slick-list {
+    overflow: visible;
+    .slick-slide {
+      padding: 0.5rem;
+      height: 450px;
+      position: relative;
+    }
+  }
+`;
