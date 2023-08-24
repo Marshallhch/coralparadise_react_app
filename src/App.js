@@ -13,6 +13,11 @@ const theme = {
 
   colors: {
     fonts: '#333',
+    point: '#ff6666',
+  },
+
+  el: {
+    sectionPadding: '3rem 0',
   },
 };
 

@@ -19,16 +19,13 @@ const Header = () => {
             <Link to='/'>홈</Link>
           </li>
           <li>
-            <Link to='/search-lists'>검색 리스트</Link>
-          </li>
-          <li>
             <Link to='/wish-lists'>위시 리스트</Link>
           </li>
           <li>
             <Link to='/signin'>로그인</Link>
           </li>
           <li>
-            <Link to='/signup'>로그아웃</Link>
+            <Link to='/signup'>회원가입</Link>
           </li>
         </ul>
         <div className='menu-icon'>

@@ -11,7 +11,7 @@ export const HeaderSection = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.8rem 0;
+    padding: 1.8rem 20px;
 
     .navi {
       display: flex;
@@ -19,6 +19,7 @@ export const HeaderSection = styled.header`
 
       a {
         font-size: 1.125rem;
+        font-weight: 500;
       }
     }
   }

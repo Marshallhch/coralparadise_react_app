@@ -30,6 +30,15 @@ const GlobalStyles = createGlobalStyle`
     color:#333;
     font-family: 'Noto Sans KR', sans-serif;
   }
+
+  em, strong{
+    font-style:normal;
+    font-weight:normal;
+  }
+
+  .section{
+    padding:${({ theme }) => theme.el.sectionPadding};
+  }
 `;
 
 export default GlobalStyles;
