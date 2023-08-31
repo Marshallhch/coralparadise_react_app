@@ -23,4 +23,67 @@ export const HeaderSection = styled.header`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    html,
+    body {
+      font-size: 14px;
+    }
+
+    .header-wrapper {
+      position: relative;
+      padding: 1.2rem;
+
+      .logo > img {
+        width: 195px;
+      }
+
+      .navi {
+        display: none;
+      }
+
+      .navi.active {
+        display: block;
+        position: absolute;
+        top: 101%;
+        z-index: 9999;
+        background: #fff;
+        width: 100%;
+        left: 0;
+
+        a {
+          padding: 1rem 0;
+          display: inline-block;
+          text-align: center;
+          width: 100%;
+          border-bottom: 1px solid #ddd;
+          transition: all 0.4s;
+
+          &:hover {
+            background: ${({ theme }) => theme.colors.point};
+            color: #fff;
+          }
+        }
+      }
+
+      .menu-icon {
+        display: block;
+
+        button {
+          font-size: 1.5rem;
+          background: #fff;
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        button.active {
+          background: #eee;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 `;

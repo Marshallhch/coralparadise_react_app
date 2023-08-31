@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { RiMenu3Line } from 'react-icons/ri';
 
@@ -8,13 +8,20 @@ import { HeaderSection } from '../styles/Header.styled';
 import Container from '../styles/Container.styled';
 
 const Header = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    // 👇️ toggle isActive state on click
+    setIsActive((current) => !current);
+  };
+
   return (
     <HeaderSection id='header'>
       <Container className='header-wrapper'>
         <div className='logo'>
           <img src={Logo} alt='logo' />
         </div>
-        <ul className='navi'>
+        <ul className={`navi ${isActive ? 'active' : ''}`}>
           <li>
             <Link to='/'>홈</Link>
           </li>
@@ -29,7 +36,7 @@ const Header = () => {
           </li>
         </ul>
         <div className='menu-icon'>
-          <button>
+          <button className={isActive ? 'active' : ''} onClick={handleClick}>
             <RiMenu3Line />
           </button>
         </div>
