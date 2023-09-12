@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  .app{
+    overflow:hidden;
+  }
+
   *{
     margin:0;
     padding:0;
@@ -38,6 +42,12 @@ const GlobalStyles = createGlobalStyle`
 
   .section{
     padding:${({ theme }) => theme.el.sectionPadding};
+  }
+
+  @media screen and (max-width:768px) {
+   .section {
+    padding: ${({ theme }) => theme.el.sectionPaddingM};
+   }
   }
 `;
 

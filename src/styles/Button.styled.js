@@ -22,6 +22,10 @@ export const SubWhiteBtn = styled(CommonBtn)`
     background: ${({ theme }) => theme.colors.point};
     color: #fff;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.875rem;
+  }
 `;
 
 export const SubPointBtn = styled(CommonBtn)`
@@ -33,5 +37,9 @@ export const SubPointBtn = styled(CommonBtn)`
   &:hover {
     background: #fff;
     color: #333;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.875rem;
   }
 `;

@@ -18,4 +18,23 @@ export const BestWrapper = styled.div`
   p {
     color: #777;
   }
+
+  @media screen and (max-width: ${({ theme }) => theme.tablet}) {
+    h3 {
+      font-size: 1.2rem;
+      line-height: 200%;
+    }
+  }
+
+  @media screen and (max-width: ${({ theme }) => theme.mobile}) {
+    h3 {
+      font-size: 1rem;
+      line-height: 160%;
+    }
+
+    p {
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+    }
+  }
 `;

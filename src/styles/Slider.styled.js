@@ -7,6 +7,9 @@ export const SliderWrapper = styled.div`
   .slick-slide {
     overflow: hidden;
     padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100%;
@@ -73,6 +76,16 @@ export const SliderWrapper = styled.div`
   .slick-next {
     right: -60px;
   }
+
+  @media screen and (max-width: 1380px) {
+    .slick-prev {
+      left: 0px;
+    }
+
+    .slick-next {
+      right: 0px;
+    }
+  }
 `;
 
 export const BestSlider = styled(SliderWrapper)`
@@ -84,7 +97,11 @@ export const BestSlider = styled(SliderWrapper)`
 
   .slide-item {
     border-radius: 0;
-    height: 100%;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex !important;
 
     .slider-text {
       position: absolute;
@@ -123,7 +140,7 @@ export const BestSlider = styled(SliderWrapper)`
     overflow: visible;
     .slick-slide {
       padding: 0.5rem;
-      height: 450px;
+      /* height: 450px; */
       position: relative;
     }
   }

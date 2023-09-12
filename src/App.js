@@ -18,6 +18,7 @@ const theme = {
 
   el: {
     sectionPadding: '3rem 0',
+    sectionPaddingM: '1rem 0',
   },
 };
 

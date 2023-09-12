@@ -22,4 +22,37 @@ export const CustomSeach = styled.div`
     column-gap: 1rem;
     margin-top: 2.5rem;
   }
+
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .buttons {
+      width: 70%;
+      display: flex;
+      margin: auto;
+      column-gap: 1rem;
+      margin-top: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    h3 {
+      font-size: 1.125rem;
+      letter-spacing: 2px;
+
+      br {
+        display: none;
+      }
+    }
+
+    .buttons {
+      width: 90%;
+      display: flex;
+      margin: auto;
+      column-gap: 0.5rem;
+      margin-top: 2rem;
+    }
+  }
 `;
