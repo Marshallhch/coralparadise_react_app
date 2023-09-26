@@ -5,11 +5,15 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SliderComponent from './SliderComponent';
 
-const SliderSection = () => {
+const SliderSection = ({ selectedOption, onOptionChange }) => {
   return (
     <div>
       <Container>
-        <SliderComponent mode='custom' />
+        <SliderComponent
+          mode='custom'
+          selectedOption={selectedOption}
+          onOptionChange={onOptionChange}
+        />
       </Container>
     </div>
   );

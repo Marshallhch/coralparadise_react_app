@@ -6,14 +6,14 @@ import Container from '../styles/Container.styled';
 // import SearchLists from '../pages/SearchLists';
 import { locationList } from '../utils/selectList';
 
-const CustomSearch = () => {
+const CustomSearch = ({ selectedOption, onOptionChange }) => {
   const [selectLoca, setSelectLoca] = useState('프랑스 파리');
 
   const handleSelectLoca = (e) => {
-    setSelectLoca(e.target.value);
+    const selectedValue = e.target.value;
+    setSelectLoca(selectedValue);
+    onOptionChange(selectedValue);
   };
-
-  console.log(selectLoca);
 
   return (
     <CustomSeach id='custom-search' className='section'>

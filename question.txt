@@ -1,5 +1,129 @@
-import { memo, useContext, useEffect, useRef, useState } from 'react';
-import { ProfileContext } from './profileContext';
+I have react Home component structure following..
+
+------
+import React from 'react';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import CustomSearch from '../components/CustomSearch';
+import SliderSection from '../components/SliderSection';
+import BestSection from '../components/BestSection';
+import MapComponent from '../components/MapComponent';
+
+const Home = () => {
+  return (
+    <div>
+      <Header />
+      <Hero />
+      <CustomSearch />
+      <SliderSection />
+      <BestSection />
+      <MapComponent />
+    </div>
+  );
+};
+--------
+
+and App.js is following code..
+
+--------
+import Home from './pages/Home';
+import SearchLists from './pages/SearchLists';
+import Details from './pages/Details';
+import { Route, Routes } from 'react-router-dom';
+
+import GlobalStyles from './styles/Global.styled';
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  pc: '1280px',
+  tablet: '768px',
+  mobile: '480px',
+
+  colors: {
+    fonts: '#333',
+    point: '#ff6666',
+  },
+
+  el: {
+    sectionPadding: '3rem 0',
+    sectionPaddingM: '1rem 0',
+  },
+};
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <div className='App'>
+        <GlobalStyles />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/search-lists' element={<SearchLists />}></Route>
+          <Route path='/details' element={<Details />}></Route>
+        </Routes>
+      </div>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+-------
+
+and CustomSearch component code is following..
+
+-------
+import React, { useState } from 'react';
+import { CustomSeach } from '../styles/CustomSearch.styled';
+import Button from './Button';
+
+import Container from '../styles/Container.styled';
+// import SearchLists from '../pages/SearchLists';
+import { locationList } from '../utils/selectList';
+
+const CustomSearch = () => {
+  const [selectLoca, setSelectLoca] = useState('프랑스 파리');
+
+  const handleSelectLoca = (e) => {
+    setSelectLoca(e.target.value);
+  };
+
+  console.log(selectLoca);
+
+  return (
+    <CustomSeach id='custom-search' className='section'>
+      <Container>
+        <div className='text-wrapper'>
+          <h3>
+            <select onChange={handleSelectLoca} value={selectLoca}>
+              {locationList.map((loca, idx) => {
+                return (
+                  <option value={loca.en} key={idx}>
+                    {loca.kr}
+                  </option>
+                );
+              })}
+            </select>
+            나는 <span>👶 아이와 함께</span>{' '}
+            <span>🇺🇸 미주/캐나다/대양주에서</span>
+            <br />
+            <span>🍨 관공보다는 휴식과 여유를</span> 즐기고 싶어요
+          </h3>
+          <div className='buttons'>
+            <Button text='최신순' mode='sub-white' />
+            <Button text='리뷰순' mode='sub-point' />
+          </div>
+        </div>
+      </Container>
+    </CustomSeach>
+  );
+};
+
+export default CustomSearch;
+-----
+
+and SliderComponent component code is following...
+
+------
+import React from 'react';
 import Slider from 'react-slick';
 import { SliderWrapper } from '../styles/Slider.styled';
 import SliderImage from '../assets/slick.jpeg';
@@ -9,23 +133,17 @@ import {
   RiArrowLeftSLine,
   RiArrowRightSLine,
   RiStarSFill,
-  RiHeartLine,
-  RiHeartFill,
 } from 'react-icons/ri';
 
 import { sliderList } from '../utils/sliderList';
 // import { bestList } from '../utils/bestList';
 
+import { useEffect, useRef, useState } from 'react';
 import { fetchData, getOptions } from '../utils/fetchData';
 
-const SliderComponent = ({ mode, selectedOption }) => {
+const SliderComponent = ({ mode }) => {
   const [slideHeight, setSlideHeight] = useState(null);
   const slideItemRef = useRef(null);
-
-  const { profileObj, setProfileObj } = useContext(ProfileContext);
-  const [isHearted, setIsHearted] = useState({});
-
-  // console.log(profileObj);
 
   const setSlideItemHeight = () => {
     if (slideItemRef.current) {
@@ -49,20 +167,6 @@ const SliderComponent = ({ mode, selectedOption }) => {
     };
   }, []);
 
-  // if (selectedOption) {
-  //   setData(selectedOption);
-  //   const getSelectedData = async (loca) => {
-  //     const getData = await fetchData(
-  //       `https://airbnb13.p.rapidapi.com/search-location?location=${loca}&checkin=2023-09-16&checkout=2023-09-17&adults=1`,
-  //       getOptions
-  //     );
-  //     // console.log(getData.results);
-  //     setSelectedData(getData);
-  //     console.log(getData);
-  //   };
-  //   getSelectedData(data);
-  // }
-
   useEffect(() => {
     // Get the user's current location using geolocation
     navigator.geolocation.getCurrentPosition(
@@ -84,10 +188,10 @@ const SliderComponent = ({ mode, selectedOption }) => {
 
     const getSearchData = async (nelat, nelng, swlat, swlng) => {
       const getData = await fetchData(
-        `https://airbnb13.p.rapidapi.com/search-location?ne_lat=${nelat}&ne_lng=${nelng}&sw_lat=${swlat}&sw_lng=${swlng}&checkin=2023-09-28&checkout=2023-09-29&adults=1&children=0&infants=0&pets=0&page=1`,
+        `https://airbnb13.p.rapidapi.com/search-location?ne_lat=${nelat}&ne_lng=${nelng}&sw_lat=${swlat}&sw_lng=${swlng}&checkin=2023-09-16&checkout=2023-09-17&adults=1&children=0&infants=0&pets=0&page=1`,
         getOptions
       );
-      // console.log(getData);
+      // console.log(getData.results);
       setLocationsFromJson(getData.results);
     };
   }, []);
@@ -183,28 +287,9 @@ const SliderComponent = ({ mode, selectedOption }) => {
       ],
     };
 
-    const toggleHeart = (location) => {
-      // if profileObj is not exist, alert('로그인이 필요합니다.')
-      if (!profileObj) {
-        alert('로그인이 필요합니다.');
-        return;
-      }
-      setIsHearted({
-        ...isHearted,
-        [location.name]: !isHearted[location.name],
-      });
-
-      if (!isHearted[location.name]) {
-        const data = {
-          googleId: profileObj.googleId,
-          rating: location.rating,
-          name: location.name,
-          image: location.images[0],
-          address: location.address,
-        };
-        console.log(data);
-      }
-    };
+    // const sortedLocations = [...locationsFromJson].sort(
+    //   (a, b) => b.rating - a.rating
+    // );
 
     return (
       <div>
@@ -212,23 +297,13 @@ const SliderComponent = ({ mode, selectedOption }) => {
           <Slider {...settings} className='slider-wrapper'>
             {[...locationsFromJson]
               .sort((a, b) => b.rating - a.rating)
-              .map((location, idx) => (
+              .map(({ rating, name, images }, idx) => (
                 <div className='slide-item' key={idx} ref={slideItemRef}>
-                  <img src={location.images[0]} alt='' />
-                  {/* heart icon */}
-                  <div
-                    className='heart-icon'
-                    onClick={() => toggleHeart(location)}>
-                    {/* {console.log(rating, name, images[0], address)} */}
-                    {isHearted[location.name] ? (
-                      <RiHeartFill />
-                    ) : (
-                      <RiHeartLine />
-                    )}
-                  </div>
+                  <img src={images[0]} alt='' />
+
                   <div className='slider-text'>
                     <span className='label'>{idx + 1}위</span>
-                    <h3>{location.name.split(' ')[0]}</h3>
+                    <h3>{name.split(' ')[0]}</h3>
                     {/* <p>{rating}</p> */}
                   </div>
                   <style>{`.slide-item { height: ${slideHeight}px; }`}</style>
@@ -241,4 +316,8 @@ const SliderComponent = ({ mode, selectedOption }) => {
   }
 };
 
-export default memo(SliderComponent);
+export default SliderComponent;
+-------
+
+
+My question is how can I send option value in select tag in CustomSearch component send to SliderComponent?

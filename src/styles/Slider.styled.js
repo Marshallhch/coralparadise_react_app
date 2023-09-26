@@ -22,6 +22,16 @@ export const SliderWrapper = styled.div`
     overflow: hidden;
     box-shadow: -3px 3px 10px #ccc;
 
+    .heart-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      font-size: 1.5rem;
+      color: ${({ theme }) => theme.colors.point};
+      z-index: 999;
+    }
+
     .slider-text {
       position: absolute;
       bottom: 0;

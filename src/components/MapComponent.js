@@ -34,7 +34,7 @@ const MapComponent = () => {
 
     const getSearchData = async (nelat, nelng, swlat, swlng) => {
       const getData = await fetchData(
-        `https://airbnb13.p.rapidapi.com/search-location?ne_lat=${nelat}&ne_lng=${nelng}&sw_lat=${swlat}&sw_lng=${swlng}&checkin=2023-09-16&checkout=2023-09-17&adults=1&children=0&infants=0&pets=0&page=1`,
+        `https://airbnb13.p.rapidapi.com/search-location?ne_lat=${nelat}&ne_lng=${nelng}&sw_lat=${swlat}&sw_lng=${swlng}&checkin=2023-09-27&checkout=2023-09-28&adults=1&children=0&infants=0&pets=0&page=1`,
         getOptions
       );
       // console.log(getData.results);
